@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="719990338448-evg0tsmn3laailsuh4urkj80iaik9uq2.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body style="background-color: #F5C014;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Fancy Todos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <button class="btn btn-secondary btn-dark btn-outline-light" id="button-home">Home</button>
+            <button class="btn btn-secondary btn-dark btn-outline-light" id="button-login">Login</button>
+            <button class="btn btn-secondary btn-dark btn-outline-light" id="button-about">About</button>
+            <button class="btn btn-secondary btn-dark btn-outline-light" id="button-logout">Logout</button>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+        <div class="page" id="page-home">
+            <h1>Here is your todos list</h1>
+            <div class="todos-cards row card-group"></div><br><br>
+            <div><button class="btn btn-secondary btn-outline-light" id="button-add-todo">new todo</button></div>
+        </div>
+    
+        <div class="page" id="page-login">
+            <h1 class="text-center">Please Log In</h1>
+            <form class="form" id="form-login">
+                <div class="form-group">
+                    <!-- <label>Email    :</label> -->
+                    <input class="form-control" type="email" id="login-email" placeholder="email" required>
+                </div>
+                <div class="form-group">
+                    <!-- <label>Password :</label> -->
+                    <input class="form-control" type="password" id="login-password" placeholder="password" required>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-secondary btn-outline-light btn-sm" type="submit">Confirm</button><br>
+                </div>
+            </form>
+            <div class="d-flex align-items-center flex-column" style="height: 200px;">
+                <p>Don't have account? please <button class="btn btn-secondary btn-outline-light btn-sm" id="button-register">register</button> or</p>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </div>
+        </div>
+    
+        <div class="page" id="page-register">
+            <h1 class="text-center">Please Register</h1>
+            <form class="form" id="form-register">
+                <div class="form-group">
+                    <input class="form-control" type="email" id="register-email" placeholder="email" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" id="register-password" placeholder="password" required>
+                </div>
+                <button class="btn btn-secondary btn-outline-light btn-sm" type="submit">Confirm</button>
+            </form>
+        </div>
+    
+        <div class="page" id="page-new-todo">
+            <h1>New Todo</h1>
+            <form class="form" id="form-new-todo">
+                <div class="form-group">
+                    <label>Title    :</label>
+                    <input type="text" id="add-title" class="form-control"><br>
+                </div>
+                <div class="form-group">
+                    <label>Description :</label>
+                    <input type="text" id="add-desc" class="form-control"><br>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Location (City):</label>
+                        <input type="text" id="add-location" class="form-control">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Due Date :</label>
+                        <input type="date" id="add-due-date" class="form-control">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Status :</label>
+                        <select id="add-status" class="form-control">
+                            <option value="undone">undone</option>
+                            <option value="done">done</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-secondary btn-outline-light btn-sm" >Create New Todo</button>
+            </form>
+            <button onclick="showHome()" class="btn btn-danger btn-outline-light btn-sm">Cancel</button>
+        </div>
+    
+        <div class="page" id="page-edit-todo">
+            <h1 id="edit-page-title"></h1>
+            <form class="form" id="form-edit">
+                <div class="form-group">
+                    <label>Title    :</label>
+                    <input type="text" id="edit-title" class="form-control"><br>
+                </div>
+                <div class="form-group">
+                    <label>Description :</label>
+                    <input type="text" id="edit-desc" class="form-control"><br>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Location (City):</label>
+                        <input type="text" id="edit-location" class="form-control">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Due Date :</label>
+                        <input type="date" id="edit-due-date" class="form-control">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Status :</label>
+                        <select id="edit-status" class="form-control">
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" id="edit-id">
+                <button type="submit" class="btn btn-secondary btn-outline-light btn-sm" >Update Todo</button>
+            </form>
+            <button onclick="showHome()" class="btn btn-danger btn-outline-light btn-sm">Cancel</button>
+        </div>
+    
+        <div class="page" id="page-about">
+            <h1>About This Todos</h1>
+            <div>
+                <p>Todos helps you to list all of your upcoming to do activities.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./script/main.js"></script>
+</body>
+</html>

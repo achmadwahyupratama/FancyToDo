@@ -1,0 +1,36 @@
+{
+  "name": "fancy-todo-server",
+  "version": "1.0.0",
+  "description": "API for fancy todo web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "SET NODE_ENV=development&& npx nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmt-11-kiev-fox/fancy-todo-server.git"
+  },
+  "keywords": [],
+  "author": "wahyu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmt-11-kiev-fox/fancy-todo-server/issues"
+  },
+  "homepage": "https://github.com/rmt-11-kiev-fox/fancy-todo-server#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "google-auth-library": "^7.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.6.0",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7",
+    "sequelize-cli": "^6.2.0"
+  }
+}
